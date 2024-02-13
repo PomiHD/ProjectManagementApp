@@ -1,19 +1,15 @@
-import { useState } from "react";
 
-function Sidebar() {
-  const [isClick, setIsClick] = useState(false);
-  function handleClick() {
-    setIsClick(!isClick);
-  }
+function Sidebar({isClick}) {
+  
   return (
     <>
       <aside>
-        <div className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
+        <div className="w-1/3 h-2/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
           <h2 className={"mb-8 font-bold uppercase md:text-xl text-stone-200"}>
             + Your Projects
           </h2>
           <button
-            onClick={handleClick}
+            onClick={isClick}
             className={
               "px-4 py-2 text-xs md:text-base rounded-md bg-stone-700 text-stone-400 hover:text-stone-100"
             }
