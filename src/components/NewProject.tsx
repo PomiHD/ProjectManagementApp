@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import Input from "./Input";
+import Model from "./Model.tsx";
 
 const NewProject = ({ onSavedProject }) => {
   const [isCancel, setIsCancel] = useState(false);
@@ -7,14 +8,27 @@ const NewProject = ({ onSavedProject }) => {
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
   const dueDateRef = useRef(null);
+  const dialog = useRef<any>();
 
   function handleSave() {
     //No duplicate saving of the project
+    const enteredTitle = titleRef.current.value;
+    const enteredDescription = descriptionRef.current.value;
+    const enteredDueDate = dueDateRef.current.value;
 
+    if (
+      enteredTitle.trim().length === 0 ||
+      enteredDescription.trim().length === 0 ||
+      enteredDueDate.trim().length === 0
+    ) {
+      //show error model
+      dialog.current?.open();
+      return;
+    }
     onSavedProject({
-      title: titleRef.current.value,
-      description: descriptionRef.current.value,
-      dueDate: dueDateRef.current.value,
+      title: enteredTitle,
+      description: enteredDescription,
+      dueDate: enteredDueDate,
     });
   }
 
@@ -24,6 +38,9 @@ const NewProject = ({ onSavedProject }) => {
 
   return (
     <>
+      <Model ref={dialog} buttonCaption={"Close"}>
+        <p>Please enter a valid title, description and due date</p>
+      </Model>
       <div className={" w-[35rem] mt-16"}>
         <menu className={"flex items-center justify-end gap-4 my-4"}>
           <li>
