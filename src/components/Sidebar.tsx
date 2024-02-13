@@ -1,6 +1,6 @@
 import { Button } from "./Button.tsx";
 
-function Sidebar({ isClick }) {
+function Sidebar({ isClick, projectList }) {
   return (
     <>
       <aside>
@@ -9,7 +9,20 @@ function Sidebar({ isClick }) {
             Your Projects
           </h2>
           <Button isClick={isClick} />
-          <ul>list of projects</ul>
+          {projectList.length > 0 ? (
+            <ul>
+              {" "}
+              {projectList.map((project, index) => (
+                <li key={index}>
+                  <h2>{project.title}</h2>
+                  <p>{project.description}</p>
+                  <p>{project.dueDate}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <h2>No Project List</h2>
+          )}
         </div>
       </aside>
     </>

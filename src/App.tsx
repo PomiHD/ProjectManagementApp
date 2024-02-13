@@ -1,23 +1,33 @@
-import Sidebar from "./components/Sidebar.tsx";
-
-import { NewProject } from "./components/NewProject.tsx";
 import { useState } from "react";
-import { NoNewProjectSelected } from "./components/NoNewProjectSelected.tsx";
+import Sidebar from "./components/Sidebar";
+import NewProject from "./components/NewProject";
+import NoNewProjectSelected from "./components/NoNewProjectSelected";
 
 function App() {
+  
+  const [projectList, setProjectList] = useState([]);
   const [isClickCreate, setIsClick] = useState(false);
 
   function handleClick() {
     setIsClick(!isClickCreate);
   }
 
+  // Callback function to add saved project
+  function handleSaveProject(savedProject: any) {
+    setProjectList(prevState => [...prevState, savedProject]);
+  }
+
   return (
-    <>
-      <main className={"h-screen my-8 flex gap-8"}>
-        <Sidebar isClick={handleClick} />
-        {isClickCreate ? <NewProject /> : <NoNewProjectSelected isClick={handleClick} />}
-      </main>
-    </>
+      <>
+        <main className={"h-screen my-8 flex gap-8"}>
+          <Sidebar isClick={handleClick} projectList ={projectList}/>
+          {isClickCreate ? (
+                <NewProject onProjectSave={handleSaveProject} />
+          ) : (
+              <NoNewProjectSelected isClick={handleClick} />
+          )}
+        </main>
+      </>
   );
 }
 
