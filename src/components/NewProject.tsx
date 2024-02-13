@@ -1,3 +1,5 @@
+import Input from "./Input.tsx";
+
 export function NewProject() {
   return (
     <>
@@ -11,18 +13,9 @@ export function NewProject() {
           </li>
         </menu>
         <div>
-          <p>
-            <label>Title</label>
-            <input />
-          </p>
-          <p>
-            <label>Description</label>
-            <textarea />
-          </p>
-          <p>
-            <label>Due date</label>
-            <input />
-          </p>
+          <Input label={"Title"} isTextArea={true} />
+          <Input label={"Description"} isTextArea={false} />
+          <Input label={"Due Date"} isTextArea={true} />
         </div>
       </div>
     </>
