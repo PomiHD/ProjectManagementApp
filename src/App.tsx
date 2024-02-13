@@ -13,7 +13,7 @@ function App() {
   let content: string | number | boolean | JSX.Element | Iterable<ReactNode>;
 
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject onSavedProject={handleAddProject} />;
+    content = <NewProject onSavedProject={handleAddProject} onCancelProject={handleCancelAddProject}/>;
   } else if (projectsState.selectedProjectId === undefined) {
     content = (
       <NoNewProjectSelected onStartAddProject={handleStartAddProject} />
@@ -43,7 +43,14 @@ function App() {
       };
     });
   }
-
+  function handleCancelAddProject() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      };
+    });
+  }
 
   return (
     <>

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Input from "./Input";
 import Model from "./Model.tsx";
 
-const NewProject = ({ onSavedProject}) => {
+const NewProject = ({ onSavedProject, onCancelProject }) => {
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
   const dueDateRef = useRef(null);
@@ -44,7 +44,7 @@ const NewProject = ({ onSavedProject}) => {
         <menu className={"flex items-center justify-end gap-4 my-4"}>
           <li>
             <button
-              
+              onClick={onCancelProject}
               className={"text-stone-800 rounded hover:text-stone-950"}
             >
               Cancel
