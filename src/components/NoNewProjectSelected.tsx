@@ -1,6 +1,7 @@
 import noProjectImage from "../assets/no-projects.png";
+import { Button } from "./Button.tsx";
 
-export function NoNewProjectSelected() {
+export function NoNewProjectSelected({ isClick }) {
   return (
     <>
       <div className={"mt-24 text-center w-2/3"}>
@@ -15,15 +16,7 @@ export function NoNewProjectSelected() {
         <p className={"text-stone-400 mb-4"}>
           Create a new project or select an existing project to get started
         </p>
-        <p>
-          <button
-            className={
-              "px-4 py-2 text-xs md:text-base rounded-md bg-stone-700 text-stone-400 hover:text-stone-100"
-            }
-          >
-            + Add Project
-          </button>
-        </p>
+        <Button isClick={isClick} />
       </div>
     </>
   );
