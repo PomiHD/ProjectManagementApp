@@ -13,9 +13,7 @@ function App() {
   let content: string | number | boolean | JSX.Element | Iterable<ReactNode>;
 
   if (projectsState.selectedProjectId === null) {
-    content = (
-        <NewProject onSavedProject={handleAddProject}/>
-    );
+    content = <NewProject onSavedProject={handleAddProject} />;
   } else if (projectsState.selectedProjectId === undefined) {
     content = (
       <NoNewProjectSelected onStartAddProject={handleStartAddProject} />
@@ -33,12 +31,14 @@ function App() {
   }
   function handleAddProject(projectData: any) {
     setProjectsState((prevState) => {
+      const projectId = Math.random();
       const newProject = {
         ...projectData,
-        id: Math.random(),
+        id: projectId,
       };
       return {
         ...prevState,
+        selectedProjectId: undefined,
         projects: [...prevState.projects, newProject],
       };
     });
@@ -54,7 +54,10 @@ function App() {
         {/*) : (*/}
         {/*    <NoNewProjectSelected onStartAddProject={handleStartAddProject} />*/}
         {/*)}*/}
-        <Sidebar projectList={projectsState} onStartAddProject={handleStartAddProject} />
+        <Sidebar
+          projectList={projectsState.projects}
+          onStartAddProject={handleStartAddProject}
+        />
         {content}
       </main>
     </>
