@@ -1,7 +1,7 @@
 import noProjectImage from "../assets/no-projects.png";
 import { Button } from "./Button.tsx";
 
-export default function NoNewProjectSelected({ isClick }) {
+export default function NoNewProjectSelected({ onStartAddProject }) {
   return (
     <>
       <div className={"mt-24 text-center w-2/3"}>
@@ -16,7 +16,7 @@ export default function NoNewProjectSelected({ isClick }) {
         <p className={"text-stone-400 mb-4"}>
           Create a new project or select an existing project to get started
         </p>
-        <Button isClick={isClick}>+ Add Project</Button>
+        <Button onClick={onStartAddProject}>+ Add Project</Button>
       </div>
     </>
   );

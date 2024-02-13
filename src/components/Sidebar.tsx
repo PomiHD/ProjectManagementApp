@@ -1,6 +1,6 @@
 import { Button } from "./Button.tsx";
 
-function Sidebar({ isClick, projectList }) {
+function Sidebar({ onStartAddProject }) {
   return (
     <>
       <aside>
@@ -8,21 +8,7 @@ function Sidebar({ isClick, projectList }) {
           <h2 className={"mb-8 font-bold uppercase md:text-xl text-stone-200"}>
             Your Projects
           </h2>
-          <Button isClick={isClick}>+ Add Project</Button>
-          {projectList.length > 0 ? (
-            <ul>
-              {" "}
-              {projectList.map((project, index) => (
-                <li key={index}>
-                  <h2>{project.title}</h2>
-                  <p>{project.description}</p>
-                  <p>{project.dueDate}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <h2>No Project List</h2>
-          )}
+          <Button onClick={onStartAddProject}>+ Add Project</Button>
         </div>
       </aside>
     </>

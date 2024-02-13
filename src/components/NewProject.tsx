@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Input from "./Input";
 
-const NewProject = ({ onProjectSave }) => {
+const NewProject = () => {
   const [isSaved, setIsSaved] = useState(false);
   const [isCancel, setIsCancel] = useState(false);
 
@@ -19,7 +19,7 @@ const NewProject = ({ onProjectSave }) => {
       dueDate: dueDateRef.current.value,
     };
     console.log(savedProject);
-    onProjectSave(savedProject); // Call the callback function with the saved project
+    
   }
 
   function handleCancel() {
@@ -35,7 +35,7 @@ const NewProject = ({ onProjectSave }) => {
               onClick={handleCancel}
               className={"text-stone-800 rounded hover:text-stone-950"}
             >
-              cancel
+              Cancel
             </button>
           </li>
           <li>
@@ -45,7 +45,7 @@ const NewProject = ({ onProjectSave }) => {
                 "px-6 py-2 rounded-md bg-stone-800 text-stone-50  hover:text-stone-950"
               }
             >
-              save
+              Save
             </button>
           </li>
         </menu>
