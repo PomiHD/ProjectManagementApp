@@ -1,6 +1,6 @@
 import { Button } from "./Button.tsx";
 
-function Sidebar({ onStartAddProject }) {
+function Sidebar({ onStartAddProject,projectList }) {
   return (
     <>
       <aside>

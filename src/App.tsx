@@ -14,7 +14,7 @@ function App() {
 
   if (projectsState.selectedProjectId === null) {
     content = (
-        <NewProject />
+        <NewProject onSavedProject={handleAddProject}/>
     );
   } else if (projectsState.selectedProjectId === undefined) {
     content = (
@@ -31,6 +31,19 @@ function App() {
       };
     });
   }
+  function handleAddProject(projectData: any) {
+    setProjectsState((prevState) => {
+      const newProject = {
+        ...projectData,
+        id: Math.random(),
+      };
+      return {
+        ...prevState,
+        projects: [...prevState.projects, newProject],
+      };
+    });
+  }
+  console.log(projectsState);
 
   return (
     <>
@@ -41,7 +54,7 @@ function App() {
         {/*) : (*/}
         {/*    <NoNewProjectSelected onStartAddProject={handleStartAddProject} />*/}
         {/*)}*/}
-        <Sidebar onStartAddProject={handleStartAddProject} />
+        <Sidebar projectList={projectsState} onStartAddProject={handleStartAddProject} />
         {content}
       </main>
     </>

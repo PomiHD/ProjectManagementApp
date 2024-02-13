@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Input from "./Input";
 
-const NewProject = () => {
+const NewProject = ({onSavedProject}) => {
   const [isSaved, setIsSaved] = useState(false);
   const [isCancel, setIsCancel] = useState(false);
 
@@ -11,15 +11,15 @@ const NewProject = () => {
 
   function handleSave() {
     //No duplicate saving of the project
-    
+
     setIsSaved(!isSaved);
     const savedProject = {
       title: titleRef.current.value,
       description: descriptionRef.current.value,
       dueDate: dueDateRef.current.value,
     };
+    onSavedProject(savedProject);
     console.log(savedProject);
-    
   }
 
   function handleCancel() {
