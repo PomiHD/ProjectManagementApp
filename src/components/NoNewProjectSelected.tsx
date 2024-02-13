@@ -6,7 +6,7 @@ export default function NoNewProjectSelected({ isClick }) {
     <>
       <div className={"mt-24 text-center w-2/3"}>
         <img
-          className={"w-16 mx-auto lg:w-48 items-center"}
+          className={"w-16 h-16 mx-auto object-contain items-center"}
           src={noProjectImage}
           alt={"no project exist!"}
         />
@@ -16,7 +16,7 @@ export default function NoNewProjectSelected({ isClick }) {
         <p className={"text-stone-400 mb-4"}>
           Create a new project or select an existing project to get started
         </p>
-        <Button isClick={isClick} />
+        <Button isClick={isClick}>+ Add Project</Button>
       </div>
     </>
   );

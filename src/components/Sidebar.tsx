@@ -8,7 +8,7 @@ function Sidebar({ isClick, projectList }) {
           <h2 className={"mb-8 font-bold uppercase md:text-xl text-stone-200"}>
             Your Projects
           </h2>
-          <Button isClick={isClick} />
+          <Button isClick={isClick}>+ Add Project</Button>
           {projectList.length > 0 ? (
             <ul>
               {" "}
