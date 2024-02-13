@@ -1,10 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Input from "./Input";
 import Model from "./Model.tsx";
 
-const NewProject = ({ onSavedProject }) => {
-  const [isCancel, setIsCancel] = useState(false);
-
+const NewProject = ({ onSavedProject}) => {
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
   const dueDateRef = useRef(null);
@@ -32,20 +30,21 @@ const NewProject = ({ onSavedProject }) => {
     });
   }
 
-  function handleCancel() {
-    setIsCancel(!isCancel);
-  }
-
   return (
     <>
       <Model ref={dialog} buttonCaption={"Close"}>
-        <p>Please enter a valid title, description and due date</p>
+        <h2 className={"text-xl font-bold text-stone-600 my-4"}>
+          Invalid Input
+        </h2>
+        <p className={" text-xl font-bold text-stone-600 my-4"}>
+          Please enter a valid title, description and due date
+        </p>
       </Model>
       <div className={" w-[35rem] mt-16"}>
         <menu className={"flex items-center justify-end gap-4 my-4"}>
           <li>
             <button
-              onClick={handleCancel}
+              
               className={"text-stone-800 rounded hover:text-stone-950"}
             >
               Cancel
