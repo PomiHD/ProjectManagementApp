@@ -32,7 +32,7 @@ const Model = forwardRef<ModelHandles, ModelProps>(function Model(
         "backdrop:bg-stone-900/90 p-4  rounded-md shadow-md border-b-red-600"
       }
     >
-      <p>{children}</p>
+      {children}
       <form method={"dialog"} className={"mt-4 text-right"}>
         <Button>{buttonCaption}</Button>
       </form>
