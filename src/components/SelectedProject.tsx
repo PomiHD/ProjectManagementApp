@@ -1,6 +1,7 @@
 import { Button } from "./Button.tsx";
+import Task from "./Task.tsx";
 
-export default function SelectedProject({ projectData,onDeletedProject }) {
+export default function SelectedProject({ projectData, onDeletedProject }) {
   const formattedDate = new Date(projectData.dueDate).toLocaleDateString(
     "en-US",
     { year: "numeric", month: "long", day: "numeric" },
@@ -20,16 +21,7 @@ export default function SelectedProject({ projectData,onDeletedProject }) {
             {projectData.description}
           </p>
         </header>
-        <label>Task</label>
-        <input type="text" />
-        <div>
-          <menu>
-            <li >
-              <p>task 1 details</p>
-              <Button>Clear</Button>
-            </li>
-          </menu>
-        </div>
+        <Task />
       </div>
     </>
   );
