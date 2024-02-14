@@ -1,8 +1,16 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import { createPortal } from "react-dom";
-import {Button} from "./Button.tsx";
+import { Button } from "./Button.tsx";
 
-const Model = forwardRef<any, any>(function Model(
+interface ModelProps {
+  children: any;
+  buttonCaption: string;
+}
+export interface ModelHandles {
+  open: () => void;
+}
+
+const Model = forwardRef<ModelHandles, ModelProps>(function Model(
   { children, buttonCaption },
   ref,
 ) {
@@ -16,10 +24,13 @@ const Model = forwardRef<any, any>(function Model(
       },
     };
   });
+
   return createPortal(
     <dialog
       ref={dialog}
-      className={"backdrop:bg-stone-900/90 p-4  rounded-md shadow-md border-b-red-600"}
+      className={
+        "backdrop:bg-stone-900/90 p-4  rounded-md shadow-md border-b-red-600"
+      }
     >
       <p>{children}</p>
       <form method={"dialog"} className={"mt-4 text-right"}>
