@@ -3,8 +3,7 @@
 ## Overview
 This is a Vite, React, and TypeScript-based project management application, enhanced with Tailwind CSS for styling. It provides a modern and efficient interface for managing projects with ease and style.
 
-Demo: 
-[Project Management App](./public/React-Project-Manager-demo.gif)
+Demo:
 
 ![](./public/React-Project-Manager-demo.gif)
 
