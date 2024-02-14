@@ -3,6 +3,8 @@
 ## Overview
 This is a Vite, React, and TypeScript-based project management application, enhanced with Tailwind CSS for styling. It provides a modern and efficient interface for managing projects with ease and style.
 
+![](https://github.com/PomiHD/ProjectManagementApp/blob/master/demo.gif)
+
 ## Features
 - Dynamic project and task management interface
 - Responsive design with Tailwind CSS
