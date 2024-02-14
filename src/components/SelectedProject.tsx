@@ -1,6 +1,6 @@
 import { Button } from "./Button.tsx";
 
-export default function SelectedProject({ projectData }) {
+export default function SelectedProject({ projectData,onDeletedProject }) {
   const formattedDate = new Date(projectData.dueDate).toLocaleDateString(
     "en-US",
     { year: "numeric", month: "long", day: "numeric" },
@@ -13,7 +13,7 @@ export default function SelectedProject({ projectData }) {
             <h1 className={"text-3xl font-bold text-stone-600 mb-2"}>
               {projectData.title}
             </h1>
-            <Button>Delete</Button>
+            <Button onClick={onDeletedProject}>Delete</Button>
           </div>
           <p className={"mb-4 text-stone-400"}>{formattedDate}</p>
           <p className={"text-stone-600 whitespace-pre-wrap"}>
