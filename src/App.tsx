@@ -29,6 +29,27 @@ function App() {
       return { ...prevState, projects: updatedProjects };
     });
   }
+  function handelDeleteTask(taskId) {
+    setProjectsState((prevState) => {
+      // Map through projects to find the one with the task to delete
+      const updatedProjects = prevState.projects.map((project) => {
+        if (project.id === prevState.selectedProjectId) {
+          // Filter out the task to delete
+          const updatedTasks = project.tasks.filter(
+            (task) => task.id !== taskId,
+          );
+          // Return the project with the updated tasks array
+          return { ...project, tasks: updatedTasks };
+        }
+        // Return all other projects as is
+        return project;
+      });
+
+      // Return the updated state with the modified projects array
+      return { ...prevState, projects: updatedProjects };
+    });
+  }
+
   function handleStartAddProject() {
     setProjectsState((prevState) => {
       return {
@@ -90,7 +111,7 @@ function App() {
       <SelectedProject
         onDeletedProject={handelDeleteProject}
         onAddTask={handelAddTask}
-        onDeleteTask={() => {}} // Placeholder for delete task functionality
+        onDeleteTask={handelDeleteTask} // Placeholder for delete task functionality
         projectData={selectedProject}
         tasks={selectedProject.tasks}
       />

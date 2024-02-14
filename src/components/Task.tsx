@@ -19,7 +19,7 @@ export default function Task({ tasks, onAdd, onDelete }) {
             {tasks.map((task) => (
               <li key={task.id} className={"flex my-4 justify-between"}>
                 <span className={"text-stone-600"}>{task.text}</span>
-                <Button onClick={onDelete}>Clear</Button>
+                <Button onClick={()=>onDelete(task.id)}>Clear</Button>
               </li>
             ))}
           </ul>
