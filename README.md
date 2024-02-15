@@ -10,7 +10,6 @@ Demo:
 ## Features
 - Dynamic project and task management interface
 - Responsive design with Tailwind CSS
-- Real-time collaboration features
 
 ## Getting Started
 1. **Clone the repository**
