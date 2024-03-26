@@ -21,7 +21,7 @@ Demo:
    npm install
 3. **Run the app**
    ```bash
-   Run the app
+   npm run dev
 
 ## Technologies Used
 - Vite
