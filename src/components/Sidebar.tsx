@@ -1,11 +1,19 @@
 import { Button } from "./Button.tsx";
+import { Project, SelectedProjectId } from "../App.tsx";
+
+type SidebarProps = {
+  onStartAddProject: () => void;
+  projectList: Project[];
+  onSelectProject: (projectId: SelectedProjectId) => void;
+  selectedProjectId: SelectedProjectId;
+};
 
 function Sidebar({
   onStartAddProject,
   projectList,
   onSelectProject,
   selectedProjectId,
-}) {
+}: SidebarProps) {
   return (
     <aside>
       <div className="w-1/3 h-full px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
@@ -38,4 +46,5 @@ function Sidebar({
     </aside>
   );
 }
+
 export default Sidebar;
