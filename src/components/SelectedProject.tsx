@@ -1,8 +1,27 @@
 import { Button } from "./Button.tsx";
+import { Task_ } from "../App.tsx";
 import Task from "./Task.tsx";
 
-export default function SelectedProject({ projectData, onDeletedProject,onAddTask,onDeleteTask,tasks }) {
-  const formattedDate = new Date(projectData.dueDate).toLocaleDateString(
+type SelectedProjectProps = {
+  projectData: {
+    title?: string;
+    dueDate?: string;
+    description?: string;
+  };
+  onDeletedProject: () => void;
+  onAddTask: (task: string) => void;
+  onDeleteTask: (id: number) => void;
+  tasks?: Task_[];
+};
+
+export default function SelectedProject({
+  projectData,
+  onDeletedProject,
+  onAddTask,
+  onDeleteTask,
+  tasks,
+}: SelectedProjectProps) {
+  const formattedDate = new Date(projectData.dueDate || "").toLocaleDateString(
     "en-US",
     { year: "numeric", month: "long", day: "numeric" },
   );
@@ -21,7 +40,7 @@ export default function SelectedProject({ projectData, onDeletedProject,onAddTas
             {projectData.description}
           </p>
         </header>
-        <Task onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks}/>
+        <Task onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
       </div>
     </>
   );
