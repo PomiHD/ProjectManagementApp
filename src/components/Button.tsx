@@ -1,6 +1,10 @@
-export function Button({ children, ...props }) {
+import {ComponentPropsWithoutRef, ReactNode} from "react";
+
+type ButtonProps = {
+    children: ReactNode;
+    } & ComponentPropsWithoutRef<"button">;
+export function Button({ children, ...props }: ButtonProps) {
   return (
-    <>
       <p>
         <button
           {...props}
@@ -11,6 +15,6 @@ export function Button({ children, ...props }) {
           {children}
         </button>
       </p>
-    </>
+    
   );
 }
