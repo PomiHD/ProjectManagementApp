@@ -4,13 +4,33 @@ import NewProject from "./components/NewProject";
 import NoNewProjectSelected from "./components/NoNewProjectSelected";
 import SelectedProject from "./components/SelectedProject";
 
+export type Task_ = {
+  id: number;
+  text: string;
+};
+
+export type Project = {
+  id?: number;
+  title?: string;
+  description?: string;
+  dueDate?: string;
+  tasks?: Task_[];
+};
+
+export type SelectedProjectId = number | null | undefined;
+
+type ProjectState = {
+  selectedProjectId: SelectedProjectId;
+  projects: Project[];
+};
+
 function App() {
-  const [projectsState, setProjectsState] = useState({
+  const [projectsState, setProjectsState] = useState<ProjectState>({
     selectedProjectId: undefined,
     projects: [],
   });
 
-  function handelAddTask(text) {
+  function handelAddTask(text: string) {
     setProjectsState((prevState) => {
       const updatedProjects = prevState.projects.map((project) => {
         if (project.id === prevState.selectedProjectId) {
@@ -20,7 +40,7 @@ function App() {
             text: text,
           };
           // Clone the project and update its tasks array
-          return { ...project, tasks: [...project.tasks, newTask] };
+          return { ...project, tasks: [...project.tasks!, newTask] };
         }
         return project;
       });
@@ -29,13 +49,14 @@ function App() {
       return { ...prevState, projects: updatedProjects };
     });
   }
-  function handelDeleteTask(taskId) {
+
+  function handelDeleteTask(taskId: number) {
     setProjectsState((prevState) => {
       // Map through projects to find the one with the task to delete
       const updatedProjects = prevState.projects.map((project) => {
         if (project.id === prevState.selectedProjectId) {
           // Filter out the task to delete
-          const updatedTasks = project.tasks.filter(
+          const updatedTasks = project.tasks!.filter(
             (task) => task.id !== taskId,
           );
           // Return the project with the updated tasks array
@@ -58,7 +79,8 @@ function App() {
       };
     });
   }
-  function handleAddProject(projectData) {
+
+  function handleAddProject(projectData: Project) {
     setProjectsState((prevState) => {
       const projectId = Math.floor(Math.random() * (100 - 1) + 1);
       const newProject = {
@@ -83,7 +105,7 @@ function App() {
     }));
   }
 
-  function handelSelectProject(projectId) {
+  function handelSelectProject(projectId: SelectedProjectId) {
     setProjectsState((prevState) => ({
       ...prevState,
       selectedProjectId: projectId,
