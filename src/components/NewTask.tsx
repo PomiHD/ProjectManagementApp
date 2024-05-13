@@ -1,13 +1,19 @@
 import { Button } from "./Button.tsx";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
-export default function NewTask({ onAdd }) {
+type NewTaskProps = {
+  onAdd: (task: string) => void;
+};
+
+export default function NewTask({ onAdd }: NewTaskProps) {
   const [enteredTask, setEnteredTask] = useState("");
-  function handleChange(event) {
+
+  function handleChange(event: { target: { value: SetStateAction<string> } }) {
     setEnteredTask(event.target.value);
   }
+
   function handleClick() {
-    if(enteredTask.trim().length === 0) return;
+    if (enteredTask.trim().length === 0) return;
     onAdd(enteredTask);
     setEnteredTask("");
   }

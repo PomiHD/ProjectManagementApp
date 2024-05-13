@@ -1,18 +1,23 @@
 import { useRef } from "react";
-import Input from "./Input";
-import Model from "./Model.tsx";
+import { Input, TextArea } from "./Input";
+import Model, { ModelHandles } from "./Model.tsx";
+import { Project } from "../App.tsx";
 
-const NewProject = ({ onSavedProject, onCancelProject }) => {
-  const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const dueDateRef = useRef(null);
-  const dialog = useRef<any>();
+type NewProjectProps = {
+  onSavedProject: (project: Project) => void;
+  onCancelProject: () => void;
+};
+const NewProject = ({ onSavedProject, onCancelProject }: NewProjectProps) => {
+  const titleRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+  const dueDateRef = useRef<HTMLInputElement>(null);
+  const dialog = useRef<ModelHandles>(null);
 
   function handleSave() {
     //No duplicate saving of the project
-    const enteredTitle = titleRef.current.value;
-    const enteredDescription = descriptionRef.current.value;
-    const enteredDueDate = dueDateRef.current.value;
+    const enteredTitle = titleRef.current?.value || "";
+    const enteredDescription = descriptionRef.current?.value || "";
+    const enteredDueDate = dueDateRef.current?.value || "";
 
     if (
       enteredTitle.trim().length === 0 ||
@@ -20,7 +25,7 @@ const NewProject = ({ onSavedProject, onCancelProject }) => {
       enteredDueDate.trim().length === 0
     ) {
       //show error model
-      dialog.current?.open();
+      dialog.current!.open();
       return;
     }
     onSavedProject({
@@ -62,18 +67,9 @@ const NewProject = ({ onSavedProject, onCancelProject }) => {
           </li>
         </menu>
         <div>
-          <Input ref={titleRef} label={"Title"} isTextArea={true} />
-          <Input
-            ref={descriptionRef}
-            label={"Description"}
-            isTextArea={false}
-          />
-          <Input
-            ref={dueDateRef}
-            type="date"
-            label={"Due Date"}
-            isTextArea={false}
-          />
+          <Input ref={titleRef} label={"Title"} />
+          <TextArea ref={descriptionRef} label={"Description"} />
+          <Input ref={dueDateRef} type="date" label={"Due Date"} />
         </div>
       </div>
     </>

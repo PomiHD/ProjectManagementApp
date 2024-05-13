@@ -1,7 +1,12 @@
 import noProjectImage from "../assets/no-projects.png";
 import { Button } from "./Button.tsx";
 
-export default function NoNewProjectSelected({ onStartAddProject }) {
+type NoNewProjectSelectedProps = {
+  onStartAddProject: () => void;
+};
+export default function NoNewProjectSelected({
+  onStartAddProject,
+}: NoNewProjectSelectedProps) {
   return (
     <>
       <div className={"mt-24 text-center w-2/3"}>
